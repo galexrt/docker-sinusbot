@@ -50,5 +50,4 @@ VOLUME $SINUS_DATA
 EXPOSE 8087
 
 # Run script
-ENTRYPOINT ["xinit", "/opt/ts3soundboard/ts3bot", "--", "/usr/bin/Xvfb"]
-CMD [":1", "-screen", "0", "800x600x16", "-ac"]
+CMD ["xinit", "/opt/ts3soundboard/ts3bot", "--", "/usr/bin/Xvfb", ":1", "-screen", "0", "800x600x16", "-ac"]
