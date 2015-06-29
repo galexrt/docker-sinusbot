@@ -38,15 +38,9 @@ RUN echo DataDir = \"/opt/data\" >> ./config.ini
 # Download and install the TeamSpeak 3 client
 RUN wget -O $TS3_RUN http://dl.4players.de/ts/releases/$TS3_VERSION/TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run
 RUN chmod +x $TS3_RUN
-RUN screen -dmS installation $TS3_RUN
-RUN screen -ls
-RUN sleep 1 && screen -ls
-RUN sleep 1 && screen -ls
-RUN sleep 1 && screen -ls
-RUN sleep 1 && screen -ls
-RUN sleep 1 && screen -ls
+RUN screen -dmS installation sh -c "eval $TS3_RUN"
 RUN sleep 1 && screen -S installation -p 0 -X stuff "$(printf \\r)"  # open license
-RUN sleep 1 && screen -S installation -p 0 -X stuff "q"             # close license
+RUN sleep 1 && screen -S installation -p 0 -X stuff "q"              # close license
 RUN sleep 1 && screen -S installation -p 0 -X stuff "y$(printf \\r)" # accept license
 RUN sleep 1 && rm $TS3_RUN
 RUN cp ./plugin/libsoundbot_plugin.so ./TeamSpeak3-Client-linux_amd64/plugins
