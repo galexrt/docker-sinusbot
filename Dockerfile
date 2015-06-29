@@ -40,7 +40,7 @@ RUN echo DataDir = \"/opt/data\" >> ./config.ini
 # Download and install the TeamSpeak 3 client
 RUN wget -qO- http://dl.4players.de/ts/releases/$TS3_VERSION/TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run | \
   tail -c +$TS3_OFFSET | \
-  tar -xf - -C $TS3_DIR
+  tar -xzf - -C $TS3_DIR
 RUN cp ./plugin/libsoundbot_plugin.so ./TeamSpeak3-Client-linux_amd64/plugins
 
 VOLUME /opt/data
