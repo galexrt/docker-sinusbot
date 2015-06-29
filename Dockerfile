@@ -20,7 +20,6 @@ ENV YTDL_BIN /usr/local/bin/youtube-dl
 # Install apt-get dependencies
 RUN apt-get update && apt-get install -y \
   wget \
-  screen \
   x11vnc \
   xinit \
   xvfb \
