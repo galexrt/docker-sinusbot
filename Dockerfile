@@ -10,7 +10,8 @@ ENV SINUS_TAR /tmp/sinusbot.tar.bz2
 
 # TeamSpeak 3 client config
 ENV TS3_VERSION 3.0.16
-ENV TS3_RUN /tmp/teamspeak-client.run
+ENV TS3_OFFSET 49134
+ENV TS3_DIR $SINUS_DIR/TeamSpeak3-Client-linux_amd64
 
 # Install apt-get dependencies
 RUN apt-get update && apt-get install -y \
@@ -26,6 +27,7 @@ RUN update-ca-certificates
 
 # Create working directory
 RUN mkdir -p $SINUS_DIR
+RUN mkdir -p $TS3_DIR
 WORKDIR $SINUS_DIR
 
 # Download and install the SinusBot
@@ -36,15 +38,9 @@ RUN cp ./config.ini.dist ./config.ini
 RUN echo DataDir = \"/opt/data\" >> ./config.ini
 
 # Download and install the TeamSpeak 3 client
-RUN wget -O $TS3_RUN http://dl.4players.de/ts/releases/$TS3_VERSION/TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run
-RUN chmod +x $TS3_RUN
-RUN screen -dmS testscreen sh -c "wait 1"
-RUN screen -ls
-RUN screen -dmS installation sh -c "eval $TS3_RUN"
-RUN sleep 1 && screen -S installation -p 0 -X stuff "$(printf \\r)"  # open license
-RUN sleep 1 && screen -S installation -p 0 -X stuff "q"              # close license
-RUN sleep 1 && screen -S installation -p 0 -X stuff "y$(printf \\r)" # accept license
-RUN sleep 1 && rm $TS3_RUN
+RUN wget -qO- http://dl.4players.de/ts/releases/$TS3_VERSION/TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run | \
+  tail -c +$TS3_OFFSET | \
+  tar -xf - -C $TS3_DIR
 RUN cp ./plugin/libsoundbot_plugin.so ./TeamSpeak3-Client-linux_amd64/plugins
 
 VOLUME /opt/data
