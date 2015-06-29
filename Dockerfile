@@ -45,7 +45,7 @@ RUN wget -qO- http://dl.4players.de/ts/releases/$TS3_VERSION/TeamSpeak3-Client-l
 RUN cp ./plugin/libsoundbot_plugin.so ./TeamSpeak3-Client-linux_amd64/plugins
 
 # Copy start script
-COPY start.sh ./
+COPY start.sh ./start.sh
 RUN chmod +x ./start.sh
 
 VOLUME $SINUS_DATA
