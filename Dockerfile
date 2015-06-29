@@ -6,7 +6,6 @@ MAINTAINER buschtoens
 # SinusBot config
 ENV SINUS_VERSION 0.9.8
 ENV SINUS_DIR /opt/ts3soundboard
-ENV SINUS_TAR /tmp/sinusbot.tar.bz2
 
 # TeamSpeak 3 client config
 ENV TS3_VERSION 3.0.16
@@ -31,9 +30,8 @@ RUN mkdir -p $TS3_DIR
 WORKDIR $SINUS_DIR
 
 # Download and install the SinusBot
-RUN wget -O $SINUS_TAR http://frie.se/ts3bot/sinusbot-$SINUS_VERSION.tar.bz2
-RUN tar -xjf $SINUS_TAR -C ./
-RUN rm $SINUS_TAR
+RUN wget -qO- http://frie.se/ts3bot/sinusbot-$SINUS_VERSION.tar.bz2 | \
+  tar -xjf- -C ./
 RUN cp ./config.ini.dist ./config.ini
 RUN echo DataDir = \"/opt/data\" >> ./config.ini
 
