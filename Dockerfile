@@ -50,4 +50,4 @@ VOLUME $SINUS_DATA
 EXPOSE 8087
 
 # Run script
-CMD ["xinit", "/opt/ts3soundboard/ts3bot", "--", "/usr/bin/Xvfb", ":1", "-screen", "0", "800x600x16", "-ac"]
+CMD ["LC_ALL=\"en_US.UTF-8\"", xinit", "/opt/ts3soundboard/ts3bot", "--", "/usr/bin/Xvfb", ":1", "-screen", "0", "800x600x16", "-ac"]
