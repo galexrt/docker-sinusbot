@@ -21,8 +21,13 @@ RUN apt-get update && apt-get install -y \
   xinit \
   xvfb \
   libxcursor1 \
+  libglib2.0-0 \
   ca-certificates
 RUN update-ca-certificates
+
+# Set default locale
+RUN echo LC_ALL=en_US.UTF-8 >> /etc/default/locale
+RUN echo LANG=en_US.UTF-8 >> /etc/default/locale
 
 # Create working directories and setup user
 RUN groupadd -r sinusbot && useradd -r -g sinusbot sinusbot
@@ -36,7 +41,7 @@ USER sinusbot
 RUN wget -qO- http://frie.se/ts3bot/sinusbot-$SINUS_VERSION.tar.bz2 | \
   tar -xjf- -C ./
 RUN cp ./config.ini.dist ./config.ini
-RUN echo DataDir = \"$SINUS_DATA\" >> ./config.ini
+#RUN echo DataDir = \"$SINUS_DATA\" >> ./config.ini
 
 # Download and install the TeamSpeak 3 client
 RUN wget -qO- http://dl.4players.de/ts/releases/$TS3_VERSION/TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run | \
@@ -44,14 +49,10 @@ RUN wget -qO- http://dl.4players.de/ts/releases/$TS3_VERSION/TeamSpeak3-Client-l
   tar -xzf- -C $TS3_DIR
 RUN cp ./plugin/libsoundbot_plugin.so ./TeamSpeak3-Client-linux_amd64/plugins
 
-# Copy start script
-COPY start.sh ./
-
-VOLUME $SINUS_DATA
+VOLUME $SINUS_DIR
 
 # Expose web control panel
 EXPOSE 8087
 
 # Run script
-ENV LC_ALL en_US.UTF-8
-CMD ["./start.sh"]
+CMD ["xinit" ,"/opt/ts3soundboard/ts3bot", "--", "/usr/bin/Xvfb", ":1", "-screen", "0", "800x600x16", "-ac"]
