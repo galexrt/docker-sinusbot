@@ -21,8 +21,7 @@ RUN apt-get update && apt-get install -y \
   xinit \
   xvfb \
   libxcursor1 \
-  ca-certificates \
-  bzip2
+  ca-certificates
 RUN update-ca-certificates
 
 # Create working directories and setup user
