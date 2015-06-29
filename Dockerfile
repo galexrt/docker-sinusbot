@@ -24,7 +24,7 @@ RUN apt-get update && apt-get install -y \
   bzip2
 RUN update-ca-certificates
 
-# Create working directory
+# Create working directories
 RUN mkdir -p $SINUS_DIR
 RUN mkdir -p $TS3_DIR
 WORKDIR $SINUS_DIR
