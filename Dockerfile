@@ -24,10 +24,12 @@ RUN apt-get update && apt-get install -y \
   bzip2
 RUN update-ca-certificates
 
-# Create working directories
-RUN mkdir -p $SINUS_DIR
-RUN mkdir -p $TS3_DIR
+# Create working directories and setup user
+RUN groupadd -r sinusbot && useradd -r -g sinusbot sinusbot
+RUN mkdir -p $SINUS_DIR && chown sinusbot:sinusbot $SINUS_DIR
+RUN mkdir -p $TS3_DIR && chown sinusbot:sinusbot $TS3_DIR
 WORKDIR $SINUS_DIR
+USER sinusbot
 
 # Download and install the SinusBot
 RUN wget -qO- http://frie.se/ts3bot/sinusbot-$SINUS_VERSION.tar.bz2 | \
