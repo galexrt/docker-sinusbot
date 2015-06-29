@@ -38,6 +38,8 @@ RUN echo DataDir = \"/opt/data\" >> ./config.ini
 # Download and install the TeamSpeak 3 client
 RUN wget -O $TS3_RUN http://dl.4players.de/ts/releases/$TS3_VERSION/TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run
 RUN chmod +x $TS3_RUN
+RUN screen -dmS testscreen sh -c "wait 1"
+RUN screen -ls
 RUN screen -dmS installation sh -c "eval $TS3_RUN"
 RUN sleep 1 && screen -S installation -p 0 -X stuff "$(printf \\r)"  # open license
 RUN sleep 1 && screen -S installation -p 0 -X stuff "q"              # close license
