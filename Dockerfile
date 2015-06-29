@@ -14,6 +14,7 @@ ENV TS3_RUN /tmp/teamspeak-client.run
 
 # Install apt-get dependencies
 RUN apt-get update && apt-get install -y \
+  wget \
   x11vnc \
   xinit \
   xvfb \
