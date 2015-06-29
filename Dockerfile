@@ -22,6 +22,7 @@ RUN apt-get update && apt-get install -y \
   libxcursor1 \
   ca-certificates \
   bzip2
+RUN update-ca-certificates
 
 # Download and install the SinusBot
 RUN wget -O $SINUS_TAR http://frie.se/ts3bot/sinusbot-$SINUS_VERSION.tar.bz2
