@@ -3,8 +3,8 @@ MAINTAINER Alexander Trost <galexrt@googlemail.com>
 
 # SinusBot config
 ENV SINUS_VERSION="0.9.8" SINUS_USER="sinusbot" SINUS_GROUP="sinusbot" SINUS_DIR="/opt/sinusbot" SINUS_DATA="/data"
-    TS3_VERSION="3.0.16" TS3_OFFSET="49134" TS3_DIR="$SINUS_DIR/TeamSpeak3-Client-linux_amd64"
-    YTDL_VERSION="latest" YTDL_BIN="/usr/local/bin/youtube-dl"
+ENV TS3_VERSION="3.0.17" TS3_OFFSET="49134" TS3_DIR="$SINUS_DIR/TeamSpeak3-Client-linux_amd64"
+ENV YTDL_VERSION="latest" YTDL_BIN="/usr/local/bin/youtube-dl"
 # Install dependencies
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh && \
