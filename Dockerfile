@@ -34,7 +34,7 @@ RUN chmod 755 /entrypoint.sh && \
     tail -c +$TS3_OFFSET | \
     tar -xzf- -C "$TS3_DIR" && \
     mv "$SINUS_DIR/config.ini.dist" "$SINUS_DIR/config.ini" && \
-    sed -i 's/TS3Path = .*/TS3Path = \""$TS3_DIR"\"/g' && \
+    sed -i "s/TS3Path = .*/TS3Path = \"$TS3_DIR\"/g" "$SINUS_DIR/config.ini" && \
     echo DataDir = \"$SINUS_DATA\" >> "$SINUS_DIR/config.ini" && \
     echo YoutubeDLPath = \"$YTDL_BIN\" >> "$SINUS_DIR/config.ini" && \
     cp "$SINUS_DIR/plugin/libsoundbot_plugin.so" "$TS3_DIR/plugins/" && \
