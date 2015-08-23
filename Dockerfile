@@ -33,8 +33,9 @@ RUN chmod 755 /entrypoint.sh && \
     wget -qO- "http://dl.4players.de/ts/releases/$TS3_VERSION/TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run" | \
     tail -c +$TS3_OFFSET | \
     tar -xzf- -C "$TS3_DIR" && \
-    cp "$SINUS_DIR/config.ini.dist" "$SINUS_DIR/config.ini" && \
-    echo YoutubeDLPath = \"$YTDL_BIN\" >> ./config.ini && \
+    mv "$SINUS_DIR/config.ini.dist" "$SINUS_DIR/config.ini" && \
+    echo DataDir = \"$SINUS_DATA\" >> "$SINUS_DIR/config.ini" && \
+    echo YoutubeDLPath = \"$YTDL_BIN\" >> "$SINUS_DIR/config.ini" && \
     cp "$SINUS_DIR/plugin/libsoundbot_plugin.so" "$TS3_DIR/plugins/" && \
     chown "$SINUS_USER":"$SINUS_GROUP" -R "$SINUS_DIR" "$SINUS_DATA" "$TS3_DIR"
 VOLUME "$SINUS_DIR"
