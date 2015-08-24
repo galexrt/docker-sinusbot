@@ -26,9 +26,9 @@ RUN chmod 755 /entrypoint.sh && \
     echo LANG=en_US.UTF-8 >> /etc/default/locale && \
     apt-get clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-    groupadd -r "$SINUS_GROUP" && \
-    useradd -r -g "$SINUS_GROUP" -d "$SINUS_DIR" "$SINUS_USER" && \
-    mkdir -p "$SINUS_DIR" "$SINUS_DATA" "$TS3_DIR" && \
+    groupadd -g 3000 -r "$SINUS_GROUP" && \
+    useradd -u 3000 -r -g "$SINUS_GROUP" -d "$SINUS_DIR" "$SINUS_USER" && \
+    mkdir -p "$SINUS_DIR" "$TS3_DIR" && \
     wget -qO- http://frie.se/ts3bot/sinusbot-$SINUS_VERSION.tar.bz2 | \
     tar -xjf- -C "$SINUS_DIR" && \
     wget -qO- "http://dl.4players.de/ts/releases/$TS3_VERSION/TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run" | \
@@ -36,11 +36,10 @@ RUN chmod 755 /entrypoint.sh && \
     tar -xzf- -C "$TS3_DIR" && \
     mv "$SINUS_DIR/config.ini.dist" "$SINUS_DIR/config.ini" && \
     sed -i "s|TS3Path = .*|TS3Path = \"$TS3_DIR/ts3client_linux_amd64\"|g" "$SINUS_DIR/config.ini" && \
-    echo DataDir = \"$SINUS_DATA\" >> "$SINUS_DIR/config.ini" && \
     echo YoutubeDLPath = \"$YTDL_BIN\" >> "$SINUS_DIR/config.ini" && \
     cp "$SINUS_DIR/plugin/libsoundbot_plugin.so" "$TS3_DIR/plugins/" && \
-    chown "$SINUS_USER":"$SINUS_GROUP" -R "/entrypoint.sh" "$SINUS_DIR" "$SINUS_DATA" "$TS3_DIR"
-USER "$SINUS_USER"
+    chown "$SINUS_USER":"$SINUS_GROUP" -R "/entrypoint.sh" "$SINUS_DIR" "$TS3_DIR" && \
+    ln -s "$SINUS_DIR/data" "$SINUS_DATA"
 VOLUME "$SINUS_DIR"
 EXPOSE 8087
 ENTRYPOINT ["/entrypoint.sh"]

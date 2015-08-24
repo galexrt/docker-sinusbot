@@ -31,6 +31,7 @@ spec:
           volumeMounts:
           - name: sinusbot-persistent-storage
             mountPath: /data
+            readOnly: false
       volumes:
       - name: sinusbot-persistent-storage
         hostPath:
