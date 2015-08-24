@@ -39,6 +39,6 @@ RUN chmod 755 /entrypoint.sh && \
     echo YoutubeDLPath = \"$YTDL_BIN\" >> "$SINUS_DIR/config.ini" && \
     cp "$SINUS_DIR/plugin/libsoundbot_plugin.so" "$TS3_DIR/plugins/" && \
     chown "$SINUS_USER":"$SINUS_GROUP" -R "/entrypoint.sh" "$SINUS_DIR" "$TS3_DIR"
-VOLUME "$SINUS_DIR"
+VOLUME "$SINUS_DATA"
 EXPOSE 8087
 ENTRYPOINT ["/entrypoint.sh"]
