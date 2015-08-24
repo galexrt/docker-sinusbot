@@ -30,7 +30,7 @@ spec:
               protocol: TCP
           volumeMounts:
           - name: sinusbot-persistent-storage
-            mountPath: /data
+            mountPath: /sinusbot/data
             readOnly: false
       volumes:
       - name: sinusbot-persistent-storage
