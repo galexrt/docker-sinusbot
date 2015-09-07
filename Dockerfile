@@ -1,5 +1,5 @@
 FROM debian:jessie
-MAINTAINER Alexander Trost <galexrt@googlemail.com>
+MAINTAINER Veltro Gaming Network <docker@veltro.de>
 
 ENV SINUS_VERSION="0.9.8" SINUS_USER="sinusbot" SINUS_GROUP="sinusbot" SINUS_DIR="/sinusbot" SINUS_DATA="$SINUS_DIR/data"
 ENV TS3_VERSION="3.0.16" TS3_OFFSET="49134" TS3_DIR="$SINUS_DIR/TeamSpeak3-Client-linux_amd64" YTDL_VERSION="latest" YTDL_BIN="/usr/local/bin/youtube-dl"
