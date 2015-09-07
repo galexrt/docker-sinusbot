@@ -17,6 +17,7 @@ RUN chmod 755 /entrypoint.sh && \
     libglib2.0-0 \
     python \
     bzip2 \
+    sqlite3 \
     ca-certificates && \
     update-ca-certificates && \
     wget -qO "$YTDL_BIN" "https://yt-dl.org/downloads/$YTDL_VERSION/youtube-dl" && \
