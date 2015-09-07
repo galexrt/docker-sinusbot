@@ -1,0 +1,38 @@
+apiVersion: v1
+kind: ReplicationController
+metadata:
+  name: sinusbot-v1
+  namespace: default
+  labels:
+    version: v1
+    app: sinusbot
+spec:
+  replicas: 1
+  selector:
+    version: v1
+    app: sinusbot
+  template:
+    metadata:
+      labels:
+        app: sinusbot
+        version: v1
+    spec:
+      containers:
+        - image: galexrt/sinusbot:latest
+          name: sinusbot
+          resources:
+            limits:
+              cpu: 50m
+              memory: 512Mi
+          ports:
+            - containerPort: 8087
+              hostPort: 8087
+              protocol: TCP
+          volumeMounts:
+          - name: sinusbot-persistent-storage
+            mountPath: /sinusbot/data
+            readOnly: false
+      volumes:
+      - name: sinusbot-persistent-storage
+        hostPath:
+          path: /container-data/sinusbot-data
