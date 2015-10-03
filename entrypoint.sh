@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo "Correcting mount point permissions ..."
+echo "Correcting mount \"$SINUS_DATA\" permissions ..."
 chown "$SINUS_USER":"$SINUS_GROUP" -R "$SINUS_DATA"
 
 echo "Checking for TeamSpeak SinusBot Updates ..."
