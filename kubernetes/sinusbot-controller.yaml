@@ -23,7 +23,7 @@ spec:
           resources:
             limits:
               cpu: 50m
-              memory: 512Mi
+              memory: 768Mi
           ports:
             - containerPort: 8087
               hostPort: 8087
