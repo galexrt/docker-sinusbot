@@ -4,7 +4,7 @@ MAINTAINER Veltro Gaming Network <docker@veltro.de>
 ENV SINUS_USER="sinusbot" \
     SINUS_GROUP="sinusbot" \
     SINUS_DIR="/sinusbot" \
-    SINUS_DATA="$SINUS_DIR/data"
+    SINUS_DATA="$SINUS_DIR/data" \
     YTDL_BIN="/usr/local/bin/youtube-dl" \
     TS3_DIR="$SINUS_DIR/TeamSpeak3-Client-linux_amd64" \
     SINUS_VERSION="0.9.8" \ 
