@@ -10,7 +10,7 @@ ENV SINUS_USER="sinusbot" \
     SINUS_VERSION="0.9.8" \ 
     YTDL_VERSION="latest" \
     TS3_VERSION="3.0.18.2" \
-    TS3_OFFSET="24999"
+    TS3_OFFSET="25000"
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh && \
     apt-get update -q && \
