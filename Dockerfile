@@ -1,15 +1,32 @@
 FROM debian:jessie
 MAINTAINER Alexander Trost <galexrt@googlemail.com>
 
-ENV SINUS_VERSION="0.9.8" SINUS_USER="sinusbot" SINUS_GROUP="sinusbot" SINUS_DIR="/sinusbot" SINUS_DATA="$SINUS_DIR/data"
-ENV TS3_VERSION="3.0.16" TS3_OFFSET="49134" TS3_DIR="$SINUS_DIR/TeamSpeak3-Client-linux_amd64" YTDL_VERSION="latest" YTDL_BIN="/usr/local/bin/youtube-dl"
-
+ENV SINUS_USER="sinusbot" \
+    SINUS_GROUP="sinusbot" \
+    SINUS_DIR="/sinusbot" \
+    SINUS_DATA="$SINUS_DIR/data" \
+    YTDL_BIN="/usr/local/bin/youtube-dl" \
+    TS3_DIR="$SINUS_DIR/TeamSpeak3-Client-linux_amd64" \
+    SINUS_VERSION="0.9.8" \
+    YTDL_VERSION="latest" \
+    TS3_VERSION="3.0.18.2" \
+    TS3_OFFSET="25000"
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh && \
-    groupadd -g 3000 -r "$SINUS_GROUP" && \
-    useradd -u 3000 -r -g "$SINUS_GROUP" -d "$SINUS_DIR" "$SINUS_USER" && \
-    apt-get -qq update && \
-    apt-get -qq install -y locales wget sudo x11vnc xinit xvfb libxcursor1 libglib2.0-0 python bzip2 ca-certificates && \
+    apt-get update -q && \
+    apt-get install -yq \
+    locales \
+    wget \
+    sudo \
+    x11vnc \
+    xinit \
+    xvfb \
+    libxcursor1 \
+    libglib2.0-0 \
+    python \
+    bzip2 \
+    sqlite3 \
+    ca-certificates && \
     update-ca-certificates && \
     wget -q -O "$YTDL_BIN" "https://yt-dl.org/downloads/$YTDL_VERSION/youtube-dl" && \
     chmod 775 -f "$YTDL_BIN" && \
