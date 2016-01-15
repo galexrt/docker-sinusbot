@@ -27,6 +27,8 @@ RUN chmod 755 /entrypoint.sh && \
     bzip2 \
     sqlite3 \
     ca-certificates && \
+    groupadd -g 3000 -r "$SINUS_GROUP" && \
+    useradd -u 3000 -r -g "$SINUS_GROUP" -d "$SINUS_DIR" "$SINUS_USER" && \
     update-ca-certificates && \
     wget -q -O "$YTDL_BIN" "https://yt-dl.org/downloads/$YTDL_VERSION/youtube-dl" && \
     chmod 775 -f "$YTDL_BIN" && \
@@ -43,10 +45,10 @@ RUN chmod 755 /entrypoint.sh && \
     sed -i "s|TS3Path = .*|TS3Path = \"$TS3_DIR/ts3client_linux_amd64\"|g" "$SINUS_DIR/config.ini" && \
     echo YoutubeDLPath = \"$YTDL_BIN\" >> "$SINUS_DIR/config.ini" && \
     cp -f "$SINUS_DIR/plugin/libsoundbot_plugin.so" "$TS3_DIR/plugins/" && \
-    chown -f "$SINUS_USER":"$SINUS_GROUP" -R "/entrypoint.sh" "$SINUS_DIR" "$TS3_DIR" && \
+    chown -fR "$SINUS_USER":"$SINUS_GROUP" "$SINUS_DIR" "$TS3_DIR" && \
     apt-get -qq clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-VOLUME "$SINUS_DATA"
+VOLUME ["$SINUS_DATA"]
 EXPOSE 8087
 ENTRYPOINT ["/entrypoint.sh"]
