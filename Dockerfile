@@ -13,8 +13,8 @@ ENV SINUS_USER="sinusbot" \
     TS3_OFFSET="25000"
 ADD entrypoint.sh /entrypoint.sh
 RUN chmod 755 /entrypoint.sh && \
-    apt-get update -q && \
-    apt-get install -yq \
+    apt-get -q update && \
+    apt-get -q install -y \
     locales \
     wget \
     sudo \
