@@ -1,5 +1,11 @@
 #!/bin/bash
 
+if [ "$DEBUG" == "True" ] || [ "$DEBUG" == "true" ]; then
+    set -x
+    set -e
+    sed -i 's/LogLevel.*/LogLevel = 10/g' "$SINUS_DIR/config.ini"
+fi
+
 echo "Removing /tmp/.X1-lock, if existing"
 rm -f /tmp/.X1-lock
 
