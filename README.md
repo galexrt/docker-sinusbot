@@ -2,6 +2,7 @@
 Debian Jessie with Sinusbot by Michael Friese.
 
 TeamSpeak 3 SinusBot Homepage: https://frie.se/ts3bot/
+Forked from @galexrt
 
 ## Summary
 * Debian Jessie with the latest version of Sinusbot
