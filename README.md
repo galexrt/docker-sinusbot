@@ -19,7 +19,7 @@ chown -R sinusbot /data/sinusbot
 
 ### Mount host directory
 ```
-docker run --name sinusbot -d -v /data/sinusbot:/sinusbot/data -p 8087:8087 raaaimund/docker-sinusbot:latest
+docker run --name sinusbot -d -v /data/sinusbot:/sinusbot/data -p 8087:8087 galexrt/sinusbot:latest
 ```
 
 ### SELinux
