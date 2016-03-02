@@ -1,4 +1,5 @@
 FROM debian:jessie
+
 MAINTAINER Alexander Trost <galexrt@googlemail.com>
 
 ENV SINUS_USER="sinusbot" \
@@ -10,8 +11,11 @@ ENV SINUS_USER="sinusbot" \
     SINUS_VERSION="0.9.8" \
     YTDL_VERSION="latest" \
     TS3_VERSION="3.0.18.2" \
-    TS3_OFFSET="25000"
+    TS3_OFFSET="25000" \
+    PORT=8087
+    
 ADD entrypoint.sh /entrypoint.sh
+
 RUN chmod 755 /entrypoint.sh && \
     apt-get -q update && \
     apt-get -q install -y \
@@ -50,5 +54,7 @@ RUN chmod 755 /entrypoint.sh && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 VOLUME ["$SINUS_DATA"]
-EXPOSE 8087
+
+EXPOSE $PORT
+
 ENTRYPOINT ["/entrypoint.sh"]
