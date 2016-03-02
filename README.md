@@ -30,9 +30,9 @@ docker run --name sinusbot -d -v /data/sinusbot:/sinusbot -p 8087:8087 galexrt/s
 If your host uses SELinux it may be necessary to use the **:z** option:
 ```
 <<<<<<< HEAD
-docker run --name sinusbot -d -v /data/sinusbot:/sinusbot/data:z -p 8087:8087 raaaimund/docker-sinusbot:latest
+docker run --name sinusbot -d -v /data/sinusbot:/sinusbot/data -p 8087:8087 galexrt/sinusbot:latest
 ```
 =======
-docker run --name sinusbot -d -v /data/sinusbot:/sinusbot:z -p 8087:8087 galexrt/sinusbot:latest
+docker run --name sinusbot -d -v /data/sinusbot:/sinusbot/data:z -p 8087:8087 galexrt/sinusbot:latest
 ```
 >>>>>>> 2ce31ef53cc3d86b252bbd6bfae36c32bcd5e2cf
