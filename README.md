@@ -14,7 +14,11 @@ The default UID of the user which is used in the container is 3000.
 So if you mount a directory from your host you have to set the permission to the user with the UID of 3000.
 ```
 useradd -u 3000 sinusbot
-chown -R sinusbot /data/sinusbot
+chown -R sinusbot:sinusbot /data/sinusbot
+```
+Or if you dont want to create an user just use
+```
+chown -R 3000:3000 /data/sinusbot
 ```
 
 ### Mount host directory
