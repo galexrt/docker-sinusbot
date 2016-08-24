@@ -19,8 +19,7 @@ RUN groupadd -g 3000 -r sinusbot && \
     useradd -u 3000 -r -g sinusbot -d "$SINUS_DIR" "$SINUS_USER" && \
     chmod 755 /entrypoint.sh && \
     apt-get -q update && \
-    apt-get -q install -y locales wget sudo x11vnc xinit xvfb libxcursor1 \
-        libglib2.0-0 python bzip2 sqlite3 ca-certificates && \
+    apt-get -q install -y locales wget sudo python bzip2 sqlite3 ca-certificates && \
     update-ca-certificates && \
     locale-gen --purge en_US.UTF-8 && \
     echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale && \
