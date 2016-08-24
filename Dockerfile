@@ -16,7 +16,7 @@ ENV SINUS_USER=3000 \
 ADD entrypoint.sh /entrypoint.sh
 
 RUN groupadd -g "$SINUS_GROUP" sinusbot && \
-    useradd -u "$SINUS_USER" -g sinusbot -d "$SINUS_DIR" "$SINUS_USER" && \
+    useradd -u "$SINUS_USER" -g "$SINUS_GROUP" -d "$SINUS_DIR" sinusbot && \
     apt-get -q update && \
     apt-get -q install -y locales wget sudo python bzip2 sqlite3 ca-certificates && \
     update-ca-certificates && \
