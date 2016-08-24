@@ -22,7 +22,7 @@ spec:
           name: sinusbot
           resources:
             limits:
-              cpu: 50m
+              cpu: 350m
               memory: 768Mi
           ports:
             - containerPort: 8087
