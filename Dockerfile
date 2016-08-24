@@ -18,6 +18,7 @@ ADD entrypoint.sh /entrypoint.sh
 RUN groupadd -g "$SINUS_GROUP" sinusbot && \
     useradd -u "$SINUS_USER" -g "$SINUS_GROUP" -d "$SINUS_DIR" sinusbot && \
     apt-get -q update && \
+    apt-get -q upgrade -y && \
     apt-get -q install -y locales wget sudo python bzip2 sqlite3 ca-certificates libglib2.0-0 x11vnc xvfb libxcursor1 xcb && \
     update-ca-certificates && \
     locale-gen --purge en_US.UTF-8 && \
