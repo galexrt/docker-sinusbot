@@ -17,7 +17,6 @@ ADD entrypoint.sh /entrypoint.sh
 
 RUN groupadd -g "$SINUS_GROUP" -r sinusbot && \
     useradd -u "$SINUS_USER" -r -g sinusbot -d "$SINUS_DIR" "$SINUS_USER" && \
-    chmod 755 /entrypoint.sh && \
     apt-get -q update && \
     apt-get -q install -y locales wget sudo python bzip2 sqlite3 ca-certificates && \
     update-ca-certificates && \
@@ -34,7 +33,7 @@ RUN wget -q -O- "http://dl.4players.de/ts/releases/$TS3_VERSION/TeamSpeak3-Clien
     tar xzf - -C "$TS3_DIR"
 
 RUN wget -q -O "$YTDL_BIN" "https://yt-dl.org/downloads/$YTDL_VERSION/youtube-dl" && \
-    chmod 775 -f "$YTDL_BIN"
+    chmod 755 -f "$YTDL_BIN"
 
 RUN mv -f "$SINUS_DIR/config.ini.dist" "$SINUS_DIR/config.ini" && \
     sed -i "s|TS3Path = .*|TS3Path = \"$TS3_DIR/ts3client_linux_amd64\"|g" "$SINUS_DIR/config.ini" && \
