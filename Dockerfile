@@ -2,8 +2,8 @@ FROM debian:jessie
 
 MAINTAINER Alexander Trost <galexrt@googlemail.com>
 
-ENV SINUS_USER=3000 \
-    SINUS_GROUP=3000 \
+ENV SINUS_USER="3000" \
+    SINUS_GROUP="3000" \
     SINUS_DIR="/sinusbot" \
     SINUS_DATA="$SINUS_DIR/data" \
     YTDL_BIN="/usr/local/bin/youtube-dl" \
