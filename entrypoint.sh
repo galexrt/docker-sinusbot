@@ -13,6 +13,11 @@ if [ "$SINUS_GROUP" != "3000" ]; then
     groupmod -g "$SINUS_GROUP" sinusbot
 fi
 
+if [ ! -d "$SINUS_DATA/scripts" ]; then
+    mv "$SINUS_DIR/scripts" "$SINUS_DATA/scripts"
+fi
+ln -s "$SINUS_DATA/scripts" "$SINUS_DIR/scripts"
+
 echo "Correcting mount point permissions ..."
 chown "$SINUS_USER":"$SINUS_GROUP" -R "$SINUS_DATA"
 
