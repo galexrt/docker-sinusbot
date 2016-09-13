@@ -1,4 +1,7 @@
 # docker-sinusbot
+
+[![](https://images.microbadger.com/badges/image/galexrt/sinusbot.svg)](https://microbadger.com/images/galexrt/sinusbot "Get your own image badge on microbadger.com")
+
 Debian Jessie with Sinusbot by Michael Friese.
 TeamSpeak 3 SinusBot Homepage: https://frie.se/ts3bot/.
 
