@@ -7,7 +7,7 @@ if [ "$DEBUG" == "True" ] || [ "$DEBUG" == "true" ]; then
 fi
 
 if [ "$SINUS_USER" != "3000" ]; then
-    usermod -u "$SINUS_USE"R sinusbot
+    usermod -u "$SINUS_USER" sinusbot
 fi
 if [ "$SINUS_GROUP" != "3000" ]; then
     groupmod -g "$SINUS_GROUP" sinusbot
