@@ -15,8 +15,8 @@ ENV SINUS_USER="3000" \
 
 ADD entrypoint.sh /entrypoint.sh
 
-RUN groupadd -g sinusbot sinusbot && \
-    useradd -u sinusbot -g "$SINUS_GROUP" -d "$SINUS_DIR" sinusbot && \
+RUN groupadd -g 3000 sinusbot && \
+    useradd -u 3000 -g 3000 -d "$SINUS_DIR" sinusbot && \
     apt-get -q update && \
     apt-get -q upgrade -y && \
     apt-get -q install -y libpulse0 locales wget sudo python bzip2 sqlite3 ca-certificates libglib2.0-0 x11vnc xvfb libxcursor1 xcb && \
