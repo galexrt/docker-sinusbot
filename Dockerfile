@@ -15,8 +15,8 @@ ENV SINUS_USER="3000" \
 
 ADD entrypoint.sh /entrypoint.sh
 
-RUN groupadd -g "$SINUS_GROUP" sinusbot && \
-    useradd -u "$SINUS_USER" -g "$SINUS_GROUP" -d "$SINUS_DIR" sinusbot && \
+RUN groupadd -g sinusbot sinusbot && \
+    useradd -u sinusbot -g "$SINUS_GROUP" -d "$SINUS_DIR" sinusbot && \
     apt-get -q update && \
     apt-get -q upgrade -y && \
     apt-get -q install -y libpulse0 locales wget sudo python bzip2 sqlite3 ca-certificates libglib2.0-0 x11vnc xvfb libxcursor1 xcb && \
@@ -40,7 +40,7 @@ RUN mv -f "$SINUS_DIR/config.ini.dist" "$SINUS_DIR/config.ini" && \
     sed -i "s|TS3Path = .*|TS3Path = \"$TS3_DIR/ts3client_linux_amd64\"|g" "$SINUS_DIR/config.ini" && \
     echo "YoutubeDLPath = \"$YTDL_BIN\"" >> "$SINUS_DIR/config.ini" && \
     cp -f "$SINUS_DIR/plugin/libsoundbot_plugin.so" "$TS3_DIR/plugins/" && \
-    chown -fR "$SINUS_USER":"$SINUS_GROUP" "$SINUS_DIR" "$TS3_DIR" && \
+    chown -fR sinusbot:sinusbot "$SINUS_DIR" "$TS3_DIR" && \
     apt-get -qq clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
