@@ -11,6 +11,12 @@ TeamSpeak 3 SinusBot Homepage: https://frie.se/ts3bot/.
   * /data
   
 ## Usage
+### Updating the image
+Run the below command, to update the image to the latest version:
+```
+docker pull quay.io/galexrt/sinusbot:latest
+```
+
 ### Permissions
 The default UID of the user which is used in the container is 3000.
 So if you mount a directory from your host you have to set the permission to the user with the UID of 3000.
