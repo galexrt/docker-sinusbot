@@ -9,6 +9,12 @@
 Debian Jessie with Sinusbot by Michael Friese.
 TeamSpeak 3 SinusBot Homepage: https://frie.se/ts3bot/.
 
+Current version:
+```
+Sinusbot: 0.9.16-10f0fad
+TeamSpeak: 3.1.0.1
+```
+
 ## Summary
 * Debian Jessie with the latest version of Sinusbot
 * You can inject your data into the container
