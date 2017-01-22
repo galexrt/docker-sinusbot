@@ -11,7 +11,7 @@ ENV SINUS_USER="3000" \
     SINUS_VERSION="0.9.16-10f0fad" \
     YTDL_VERSION="latest" \
     TS3_VERSION="3.1.0.1" \
-    TS3_OFFSET="25000"
+    TS3_OFFSET="25003"
 
 ADD entrypoint.sh /entrypoint.sh
 
