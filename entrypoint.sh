@@ -33,7 +33,7 @@ else
 fi
 
 echo "-> Correcting file and mount point permissions ..."
-chown -fR sinusbot:sinusbot "$SINUS_DIR" "$TS3_DIR" "$SINUS_DATA" "$SINUS_DATA_SCRIPTS"
+chown -fR sinusbot:sinusbot "$SINUS_DATA" "$SINUS_DATA_SCRIPTS"
 echo "=> Corrected mount point permissions."
 
 echo "=> Starting SinusBot (https://sinusbot.com) by Michael Friese ..."
