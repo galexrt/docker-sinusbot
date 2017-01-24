@@ -39,7 +39,7 @@ RUN wget -q -O "$YTDL_BIN" "https://yt-dl.org/downloads/$YTDL_VERSION/youtube-dl
     chmod 755 -f "$YTDL_BIN"
 
 RUN mv -f "$SINUS_DIR/config.ini.dist" "$SINUS_DIR/config.ini" && \
-    sed -i "s|TS3Path = .*|TS3Path = \"$TS3_DIR/ts3client_linux_amd64\"|g" "$SINUS_DIR/config.ini" && \
+    sed -i "s|TS3Path = .*|TS3Path = \"$TS3_DIR/ts3client_runscript.sh\"|g" "$SINUS_DIR/config.ini" && \
     echo "YoutubeDLPath = \"$YTDL_BIN\"" >> "$SINUS_DIR/config.ini" && \
     cp -f "$SINUS_DIR/plugin/libsoundbot_plugin.so" "$TS3_DIR/plugins/" && \
     chown -fR sinusbot:sinusbot "$SINUS_DIR" "$TS3_DIR" && \
