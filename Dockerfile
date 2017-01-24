@@ -15,8 +15,6 @@ ENV SINUS_USER="3000" \
 ENV SINUS_DATA="$SINUS_DIR/data" \
     SINUS_DATA_SCRIPTS="$SINUS_DIR/scripts"
 
-ADD entrypoint.sh /entrypoint.sh
-
 RUN groupadd -g 3000 sinusbot && \
     useradd -u 3000 -g 3000 -d "$SINUS_DIR" sinusbot && \
     apt-get -q update && \
@@ -46,6 +44,8 @@ RUN mv -f "$SINUS_DIR/config.ini.dist" "$SINUS_DIR/config.ini" && \
     chown -fR sinusbot:sinusbot "$SINUS_DIR" "$TS3_DIR" && \
     apt-get -qq clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+ADD entrypoint.sh /entrypoint.sh
 
 VOLUME ["$SINUS_DATA", "$SINUS_DATA_SCRIPTS"]
 
