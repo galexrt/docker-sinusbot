@@ -5,7 +5,7 @@ if [ "$DEBUG" == "True" ] || [ "$DEBUG" == "true" ]; then
     sed -i 's/LogLevel.*/LogLevel = 10/g' "$SINUS_DIR/config.ini"
 fi
 
-echo "Updating sinusbot user and group id if necessary ..."
+echo "-> Updating sinusbot user and group id if necessary ..."
 if [ "$SINUS_USER" != "3000" ]; then
     usermod -u "$SINUS_USER" sinusbot
 fi
@@ -13,18 +13,28 @@ if [ "$SINUS_GROUP" != "3000" ]; then
     groupmod -g "$SINUS_GROUP" sinusbot
 fi
 
-echo "Checking if scripts directory is empty"
+echo "-> Checking if scripts directory is empty"
 if [ ! -f "$SINUS_DATA_SCRIPTS/.docker-sinusbot-installed" ]; then
-    echo "Copying original sinusbot scripts to volume ..."
+    echo "-> Copying original sinusbot scripts to volume ..."
     cp -vrf "$SINUS_DATA_SCRIPTS-orig" "$SINUS_DATA_SCRIPTS"
     touch "$SINUS_DATA_SCRIPTS/.docker-sinusbot-installed"
-    echo "Sinusbot scripts copied."
+    echo "=> Sinusbot scripts copied."
 else
-    echo "Scripts directory is marked that scripts got copied. Nothing to do."
+    echo "=> Scripts directory is marked that scripts got copied. Nothing to do."
 fi
 
-echo "Correcting file and mount point permissions ..."
-chown -fR sinusbot:sinusbot "$SINUS_DIR" "$TS3_DIR" "$SINUS_DATA" "$SINUS_DATA_SCRIPTS"
+echo "-> Checking for old data location ..."
+if [ -d "/data" ]; then
+    rm -rf "$SINUS_DATA"
+    ln -s /data "$SINUS_DATA"
+    echo "=> !! WARNING !! Please change your volume mounts from \"/data\" to the new location at \"$SINUS_DATA\"."
+else
+    echo "=> You are good to go! You are already using the new data directory, located at \"$SINUS_DATA\"."
+fi
 
-echo "Starting TeamSpeak SinusBot ..."
+echo "-> Correcting file and mount point permissions ..."
+chown -fR sinusbot:sinusbot "$SINUS_DIR" "$TS3_DIR" "$SINUS_DATA" "$SINUS_DATA_SCRIPTS"
+echo "=> Corrected mount point permissions."
+
+echo "=> Starting SinusBot (https://sinusbot.com) by Michael Friese ..."
 exec sudo -u sinusbot -g sinusbot "$SINUS_DIR/sinusbot"
