@@ -6,6 +6,7 @@ ENV SINUS_USER="3000" \
     SINUS_GROUP="3000" \
     SINUS_DIR="/sinusbot" \
     SINUS_DATA="$SINUS_DIR/data" \
+    SINUS_DATA_SCRIPTS="$SINUS_DIR/scripts" \
     YTDL_BIN="/usr/local/bin/youtube-dl" \
     TS3_DIR="$SINUS_DIR/TeamSpeak3-Client-linux_amd64" \
     SINUS_VERSION="0.9.16-10f0fad" \
@@ -27,7 +28,8 @@ RUN groupadd -g 3000 sinusbot && \
     mkdir -p "$SINUS_DIR" "$TS3_DIR"
 
 RUN wget -qO- "https://www.sinusbot.com/pre/sinusbot-$SINUS_VERSION.tar.bz2" | \
-    tar -xjf- -C "$SINUS_DIR"
+    tar -xjf- -C "$SINUS_DIR" && \
+    mv "$SINUS_DATA_SCRIPTS" "$SINUS_DATA_SCRIPTS-orig"
 
 RUN wget -q -O- "http://dl.4players.de/ts/releases/$TS3_VERSION/TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run" | \
     tail -c +$TS3_OFFSET | \
@@ -44,7 +46,7 @@ RUN mv -f "$SINUS_DIR/config.ini.dist" "$SINUS_DIR/config.ini" && \
     apt-get -qq clean && \
     rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-VOLUME ["$SINUS_DATA"]
+VOLUME ["$SINUS_DATA", "$SINUS_DATA_SCRIPTS"]
 
 EXPOSE 8087
 
