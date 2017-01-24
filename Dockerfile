@@ -20,7 +20,7 @@ RUN groupadd -g 3000 sinusbot && \
     apt-get -q update && \
     apt-get -q upgrade -y && \
     apt-get -q install -y libpulse0 libasound2 locales wget sudo python bzip2 sqlite3 \
-        ca-certificates libglib2.0-0 x11vnc xvfb libpxcursor1 xcb libnss3 && \
+        ca-certificates libglib2.0-0 x11vnc xvfb libxcursor1 xcb libnss3 && \
     update-ca-certificates && \
     locale-gen --purge en_US.UTF-8 && \
     echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale && \
