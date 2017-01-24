@@ -12,7 +12,7 @@ ENV SINUS_USER="3000" \
     TS3_OFFSET="25003"
 
 ENV SINUS_DATA="$SINUS_DIR/data" \
-    SINUS_DATA_SCRIPTS="$SINUS_DIR/scripts"
+    SINUS_DATA_SCRIPTS="$SINUS_DIR/scripts" \
     TS3_DIR="$SINUS_DIR/TeamSpeak3-Client-linux_amd64"
 
 RUN groupadd -g 3000 sinusbot && \
