@@ -13,7 +13,7 @@ ENV SINUS_USER="3000" \
 
 ENV SINUS_DATA="$SINUS_DIR/data" \
     SINUS_DATA_SCRIPTS="$SINUS_DIR/scripts" \
-    TS3_DIR="$SINUS_DIR/TeamSpeak3-Client-linux_amd64"
+    TS3_DIR="/TeamSpeak3-Client-linux_amd64"
 
 RUN groupadd -g 3000 sinusbot && \
     useradd -u 3000 -g 3000 -d "$SINUS_DIR" sinusbot && \
