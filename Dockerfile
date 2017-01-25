@@ -1,4 +1,4 @@
-FROM centos:7
+FROM ubuntu:yakkety
 
 MAINTAINER Alexander Trost <galexrt@googlemail.com>
 
@@ -17,11 +17,12 @@ ENV SINUS_DATA="$SINUS_DIR/data" \
 
 RUN groupadd -g 3000 sinusbot && \
     useradd -u 3000 -g 3000 -d "$SINUS_DIR" sinusbot && \
-    yum -q upgrade -y && \
-    yum -q install -y xorg-x11-server-Xvfb libXcursor ca-certificates bzip2 \
-        psmisc wget sudo python ca-certificates mesa-libGL openssl fontconfig \
-        libXi libXcomposite alsa-lib libXtst mesa-libEGL && \
-    update-ca-trust && \
+    apt-get -q update -y && \
+    apt-get -q upgrade -y && \
+    apt-get -q install -y x11vnc xvfb libxcursor1 ca-certificates bzip2 \
+        libglib2.0-0 locales wget sudo python libpulse0 libasound2 && \
+    update-ca-certificates && \
+    locale-gen --purge en_US.UTF-8 &&
     echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale && \
     echo "LANG=en_US.UTF-8" >> /etc/default/locale && \
     mkdir -p "$SINUS_DIR" "$TS3_DIR"
@@ -45,7 +46,7 @@ RUN mv -f "$SINUS_DIR/config.ini.dist" "$SINUS_DIR/config.ini" && \
     echo "YoutubeDLPath = \"$YTDL_BIN\"" >> "$SINUS_DIR/config.ini" && \
     cp -f "$SINUS_DIR/plugin/libsoundbot_plugin.so" "$TS3_DIR/plugins/" && \
     chown -fR sinusbot:sinusbot "$SINUS_DIR" "$TS3_DIR" && \
-    yum -q clean all && \
+    apt-get -q clean all && \
     rm -rf /tmp/* /var/tmp/*
 
 ADD entrypoint.sh /entrypoint.sh
