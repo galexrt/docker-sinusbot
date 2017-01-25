@@ -13,6 +13,10 @@ if [ "$SINUS_GROUP" != "3000" ]; then
     groupmod -g "$SINUS_GROUP" sinusbot
 fi
 
+echo "-> Correcting file and mount point permissions ..."
+chown -fR sinusbot:sinusbot "$SINUS_DATA" "$SINUS_DATA_SCRIPTS"
+echo "=> Corrected mount point permissions."
+
 echo "-> Checking if scripts directory is empty"
 if [ ! -f "$SINUS_DATA_SCRIPTS/.docker-sinusbot-installed" ]; then
     echo "-> Copying original sinusbot scripts to volume ..."
@@ -31,10 +35,6 @@ if [ -d "/data" ]; then
 else
     echo "=> You are good to go! You are already using the new data directory, located at \"$SINUS_DATA\"."
 fi
-
-echo "-> Correcting file and mount point permissions ..."
-chown -fR sinusbot:sinusbot "$SINUS_DATA" "$SINUS_DATA_SCRIPTS"
-echo "=> Corrected mount point permissions."
 
 echo "=> Starting SinusBot (https://sinusbot.com) by Michael Friese ..."
 exec sudo -u sinusbot -g sinusbot "$SINUS_DIR/sinusbot"
