@@ -1,4 +1,4 @@
-FROM debian:jessie
+FROM centos:7
 
 MAINTAINER Alexander Trost <galexrt@googlemail.com>
 
@@ -17,11 +17,10 @@ ENV SINUS_DATA="$SINUS_DIR/data" \
 
 RUN groupadd -g 3000 sinusbot && \
     useradd -u 3000 -g 3000 -d "$SINUS_DIR" sinusbot && \
-    apt-get -q update && \
-    apt-get -q upgrade -y && \
-    apt-get -q install -y x11vnc xvfb libxcursor1 ca-certificates bzip2 psmisc \
-        libglib2.0-0 libpulse0 libasound2 locales wget sudo python sqlite3 \
-        ca-certificates libglib2.0-0 x11vnc xvfb libxcursor1 xcb libnss3 && \
+    yum -q upgrade -y && \
+    yum -q install -y x11vnc xvfb libxcursor1 ca-certificates bzip2 psmisc libglib2.0-0 \
+        libpulse0 libasound2 locales wget sudo python sqlite3 ca-certificates \
+        libglib2.0-0 x11vnc xvfb libxcursor1 xcb libnss3 && \
     update-ca-certificates && \
     locale-gen --purge en_US.UTF-8 && \
     echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale && \
@@ -29,12 +28,15 @@ RUN groupadd -g 3000 sinusbot && \
     mkdir -p "$SINUS_DIR" "$TS3_DIR"
 
 RUN wget -qO- "https://www.sinusbot.com/pre/sinusbot-$SINUS_VERSION.tar.bz2" | \
-    tar -xjf- -C "$SINUS_DIR" && \
+    tar -xjf- -C "$SINUS_DIR"
+# && \
     mv "$SINUS_DATA_SCRIPTS" "$SINUS_DATA_SCRIPTS-orig"
 
 RUN wget -q -O- "http://dl.4players.de/ts/releases/$TS3_VERSION/TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run" | \
     tail -c +$TS3_OFFSET | \
-    tar xzf - -C "$TS3_DIR"
+    tar xzf - -C "$TS3_DIR" && \
+    rm -f "$TS3_DIR/libcrypto.so.1.0.0" && \
+    ln -s /usr/lib/x86_64-linux-gnu/libcrypto.so.1.0.0 "$TS3_DIR/libcrypto.so.1.0.0"
 
 RUN wget -q -O "$YTDL_BIN" "https://yt-dl.org/downloads/$YTDL_VERSION/youtube-dl" && \
     chmod 755 -f "$YTDL_BIN"
@@ -44,8 +46,8 @@ RUN mv -f "$SINUS_DIR/config.ini.dist" "$SINUS_DIR/config.ini" && \
     echo "YoutubeDLPath = \"$YTDL_BIN\"" >> "$SINUS_DIR/config.ini" && \
     cp -f "$SINUS_DIR/plugin/libsoundbot_plugin.so" "$TS3_DIR/plugins/" && \
     chown -fR sinusbot:sinusbot "$SINUS_DIR" "$TS3_DIR" && \
-    apt-get -qq clean && \
-    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+    yum -q clean all && \
+    rm -rf /tmp/* /var/tmp/*
 
 ADD entrypoint.sh /entrypoint.sh
 
