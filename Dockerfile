@@ -22,7 +22,6 @@ RUN groupadd -g 3000 sinusbot && \
         libpulse0 libasound2 locales wget sudo python sqlite3 ca-certificates \
         libglib2.0-0 x11vnc xvfb libxcursor1 xcb libnss3 && \
     update-ca-trust && \
-    localedef -v -c -i en_US -f UTF-8 en_US.UTF-8 && \
     echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale && \
     echo "LANG=en_US.UTF-8" >> /etc/default/locale && \
     mkdir -p "$SINUS_DIR" "$TS3_DIR"
