@@ -21,7 +21,7 @@ RUN groupadd -g 3000 sinusbot && \
     yum -q install -y x11vnc xvfb libxcursor1 ca-certificates bzip2 psmisc libglib2.0-0 \
         libpulse0 libasound2 locales wget sudo python sqlite3 ca-certificates \
         libglib2.0-0 x11vnc xvfb libxcursor1 xcb libnss3 && \
-    update-ca-certificates && \
+    update-ca-trust && \
     locale-gen --purge en_US.UTF-8 && \
     echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale && \
     echo "LANG=en_US.UTF-8" >> /etc/default/locale && \
