@@ -20,7 +20,7 @@ echo "=> Corrected mount point permissions."
 echo "-> Checking if scripts directory is empty"
 if [ ! -f "$SINUS_DATA_SCRIPTS/.docker-sinusbot-installed" ]; then
     echo "-> Copying original sinusbot scripts to volume ..."
-    cp -rf "$SINUS_DATA_SCRIPTS-orig/*" "$SINUS_DATA_SCRIPTS"
+    cp -af "$SINUS_DATA_SCRIPTS-orig/"* "$SINUS_DATA_SCRIPTS"
     touch "$SINUS_DATA_SCRIPTS/.docker-sinusbot-installed"
     echo "=> Sinusbot scripts copied."
 else
