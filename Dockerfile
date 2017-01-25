@@ -22,21 +22,21 @@ RUN groupadd -g 3000 sinusbot && \
         libpulse0 libasound2 locales wget sudo python sqlite3 ca-certificates \
         libglib2.0-0 x11vnc xvfb libxcursor1 xcb libnss3 && \
     update-ca-trust && \
-    locale-gen --purge en_US.UTF-8 && \
+    localedef -v -c -i en_US -f UTF-8 en_US.UTF-8 && \
     echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale && \
     echo "LANG=en_US.UTF-8" >> /etc/default/locale && \
     mkdir -p "$SINUS_DIR" "$TS3_DIR"
 
 RUN wget -qO- "https://www.sinusbot.com/pre/sinusbot-$SINUS_VERSION.tar.bz2" | \
-    tar -xjf- -C "$SINUS_DIR"
-# && \
+    tar -xjf- -C "$SINUS_DIR" && \
     mv "$SINUS_DATA_SCRIPTS" "$SINUS_DATA_SCRIPTS-orig"
 
 RUN wget -q -O- "http://dl.4players.de/ts/releases/$TS3_VERSION/TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run" | \
     tail -c +$TS3_OFFSET | \
-    tar xzf - -C "$TS3_DIR" && \
-    rm -f "$TS3_DIR/libcrypto.so.1.0.0" && \
-    ln -s /usr/lib/x86_64-linux-gnu/libcrypto.so.1.0.0 "$TS3_DIR/libcrypto.so.1.0.0"
+    tar xzf - -C "$TS3_DIR"
+# && \
+#    rm -f "$TS3_DIR/libcrypto.so.1.0.0" && \
+#    ln -s /usr/lib/x86_64-linux-gnu/libcrypto.so.1.0.0 "$TS3_DIR/libcrypto.so.1.0.0"
 
 RUN wget -q -O "$YTDL_BIN" "https://yt-dl.org/downloads/$YTDL_VERSION/youtube-dl" && \
     chmod 755 -f "$YTDL_BIN"
