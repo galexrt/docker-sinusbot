@@ -11,15 +11,15 @@ TeamSpeak 3 SinusBot Homepage: https://frie.se/ts3bot/.
 
 Current version:
 ```
-Sinusbot: 0.9.16-10f0fad
-TeamSpeak: 3.1.0.1
+Sinusbot: latest beta (>=0.9.16-10f0fad)
+TeamSpeak: 3.0.19.4 (this version is required for Sinusbot)
 ```
 
 ## Summary
 * Debian Jessie with the latest version of Sinusbot
 * You can inject your data into the container
   * /data
-  
+
 ## Usage
 ### Updating the image
 Run the below command, to update the image to the latest version:
