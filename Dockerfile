@@ -4,7 +4,7 @@ MAINTAINER Alexander Trost <galexrt@googlemail.com>
 
 ENV SINUS_USER="3000" \
     SINUS_GROUP="3000" \
-    SINUS_DIR="/opt/ts3soundboard" \
+    SINUS_DIR="/sinusbot" \
     YTDL_BIN="/usr/local/bin/youtube-dl" \
     YTDL_VERSION="latest" \
     TS3_VERSION="3.0.19.4"
