@@ -64,8 +64,8 @@ If your host uses SELinux it may be necessary to use the **:z** option:
 docker run \
     --name sinusbot \
     -d \
-    -v /opt/docker/sinusbot/data:/sinusbot/data \
-    -v /opt/docker/sinusbot/scripts:/sinusbot/scripts \
+    -v /opt/docker/sinusbot/data:/sinusbot/data:z \
+    -v /opt/docker/sinusbot/scripts:/sinusbot/scripts:z \
     -p 8087:8087 \
     galexrt/sinusbot:latest
 ```
