@@ -18,9 +18,9 @@ ENV SINUS_DATA="$SINUS_DIR/data" \
 RUN groupadd -g 3000 sinusbot && \
     useradd -u 3000 -g 3000 -d "$SINUS_DIR" sinusbot && \
     yum -q upgrade -y && \
-    yum -q install -y x11vnc xvfb libxcursor1 ca-certificates bzip2 psmisc libglib2.0-0 \
-        libpulse0 libasound2 locales wget sudo python sqlite3 ca-certificates \
-        libglib2.0-0 x11vnc xvfb libxcursor1 xcb libnss3 && \
+    yum -q install -y xorg-x11-server-Xvfb libXcursor ca-certificates bzip2 \
+        psmisc wget sudo python ca-certificates mesa-libGL openssl fontconfig \
+        libXi libXcomposite alsa-lib libXtst mesa-libEGL && \
     update-ca-trust && \
     echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale && \
     echo "LANG=en_US.UTF-8" >> /etc/default/locale && \
