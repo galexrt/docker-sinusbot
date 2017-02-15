@@ -28,7 +28,8 @@ RUN groupadd -g "$SINUS_GROUP" sinusbot && \
 RUN wget -qO- "https://www.sinusbot.com/dl/sinusbot-beta.tar.bz2" | \
     tar -xjf- -C "$SINUS_DIR" && \
     mv "$SINUS_DATA_SCRIPTS" "$SINUS_DATA_SCRIPTS-orig" && \
-    cp -f "$SINUS_DIR/config.ini.dist" "$SINUS_DIR/config.ini"
+    cp -f "$SINUS_DIR/config.ini.dist" "$SINUS_DIR/config.ini" && \
+    sed -i "s/^DataDir.*/DataDir = $SINUS_DATA/g" "$SINUS_DIR/config.ini"
 
 RUN mkdir -p "$TS3_DIR" && \
     cd "$SINUS_DIR" || exit 1 && \
@@ -38,7 +39,7 @@ RUN mkdir -p "$TS3_DIR" && \
     yes | "./TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run" && \
     rm -f "TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run" && \
     cp -f "$SINUS_DIR/plugin/libsoundbot_plugin.so" "$TS3_DIR/plugins/" && \
-    sed -i "s|TS3Path = .*|TS3Path = \"$TS3_DIR/ts3client_linux_amd64\"|g" "$SINUS_DIR/config.ini"
+    sed -i "s|^TS3Path.*|TS3Path = \"$TS3_DIR/ts3client_linux_amd64\"|g" "$SINUS_DIR/config.ini"
 
 RUN wget -q -O "$YTDL_BIN" "https://yt-dl.org/downloads/$YTDL_VERSION/youtube-dl" && \
     chmod 755 -f "$YTDL_BIN" && \
