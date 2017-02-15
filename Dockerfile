@@ -29,7 +29,7 @@ RUN wget -qO- "https://www.sinusbot.com/dl/sinusbot-beta.tar.bz2" | \
     tar -xjf- -C "$SINUS_DIR" && \
     mv "$SINUS_DATA_SCRIPTS" "$SINUS_DATA_SCRIPTS-orig" && \
     cp -f "$SINUS_DIR/config.ini.dist" "$SINUS_DIR/config.ini" && \
-    sed -i 's/^DataDir.*/DataDir = '"$SINUS_DATA"'/g' "$SINUS_DIR/config.ini"
+    sed -i 's|^DataDir.*|DataDir = '"$SINUS_DATA"'|g' "$SINUS_DIR/config.ini"
 
 RUN mkdir -p "$TS3_DIR" && \
     cd "$SINUS_DIR" || exit 1 && \
