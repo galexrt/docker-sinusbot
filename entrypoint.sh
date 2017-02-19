@@ -35,6 +35,8 @@ if [ -d "/data" ]; then
 else
     echo "=> You are good to go! You are already using the new data directory, located at \"$SINUS_DATA\"."
 fi
+echo "=> Update Youtube-dl"
+$YTDL_BIN -U
 
 echo "=> Starting SinusBot (https://sinusbot.com) by Michael Friese ..."
 exec sudo -u sinusbot -g sinusbot "$SINUS_DIR/sinusbot"
