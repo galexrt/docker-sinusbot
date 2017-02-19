@@ -8,7 +8,7 @@ ENV SINUS_USER="3000" \
     YTDL_BIN="/usr/local/bin/youtube-dl" \
     YTDL_VERSION="latest" \
     TS3_VERSION="3.0.19.4" \
-    TS3_WEBSITE="http://teamspeak.gameserver.gamed.de"
+    TS3_DL_ADDRESS="http://teamspeak.gameserver.gamed.de/ts3/releases/"
 
 ENV SINUS_DATA="$SINUS_DIR/data" \
     SINUS_DATA_SCRIPTS="$SINUS_DIR/scripts" \
@@ -35,7 +35,7 @@ RUN wget -qO- "https://www.sinusbot.com/dl/sinusbot-beta.tar.bz2" | \
 RUN mkdir -p "$TS3_DIR" && \
     cd "$SINUS_DIR" || exit 1 && \
     wget -q -O "TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run" \
-        "$TS3_WEBSITE/ts/releases/$TS3_VERSION/TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run" && \
+        "$TS3_DL_ADDRESS/$TS3_VERSION/TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run" && \
     chmod 755 "TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run" && \
     yes | "./TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run" && \
     rm -f "TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run" && \
