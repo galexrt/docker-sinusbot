@@ -19,7 +19,7 @@ RUN groupadd -g "$SINUS_GROUP" sinusbot && \
     apt-get -q update -y && \
     apt-get -q upgrade -y && \
     apt-get -q install -y x11vnc xvfb libxcursor1 ca-certificates bzip2 \
-        libglib2.0-0 libnss3 locales wget sudo python && \
+        libglib2.0-0 libnss3 locales wget sudo python less && \
     update-ca-certificates && \
     echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale && \
     echo "LANG=en_US.UTF-8" >> /etc/default/locale && \
