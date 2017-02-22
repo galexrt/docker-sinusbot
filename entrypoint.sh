@@ -6,11 +6,8 @@ if [ "$DEBUG" == "True" ] || [ "$DEBUG" == "true" ]; then
 fi
 
 if [ "$LOGPATH" == ""]; then
-LOGPATH="/sinusbot/data/sinus.log"
-    if [ "$LOG" == "True" ] || [ "$LOG" == "true" ]; then
-        set -xe
-        sed -i 's/LogFile.*/LogFile = $LOGPATH/g' "$SINUS_DIR/config.ini"
-    fi
+    LOGPATH="${LOGPATH:/sinusbot/data/sinus.log}"
+    sed -i 's/LogFile.*/LogFile = $LOGPATH/g' "$SINUS_DIR/config.ini"
 fi
 
 echo "-> Updating sinusbot user and group id if necessary ..."
