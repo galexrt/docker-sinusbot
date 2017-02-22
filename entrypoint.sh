@@ -6,7 +6,7 @@ if [ "$DEBUG" == "True" ] || [ "$DEBUG" == "true" ]; then
 fi
 
 if [ "$LOGPATH" == ""]; then
-    LOGPATH="${LOGPATH:/sinusbot/data/sinus.log}"
+    LOGPATH="${LOGPATH:-/sinusbot/data/sinus.log}"
     sed -i 's/LogFile.*/LogFile = $LOGPATH/g' "$SINUS_DIR/config.ini"
 fi
 
