@@ -24,15 +24,13 @@ RUN groupadd -g "$SINUS_GROUP" sinusbot && \
     echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale && \
     echo "LANG=en_US.UTF-8" >> /etc/default/locale && \
     locale-gen --purge en_US.UTF-8 && \
-    mkdir -p "$SINUS_DIR"
-
-RUN wget -qO- "https://www.sinusbot.com/dl/sinusbot-beta.tar.bz2" | \
+    mkdir -p "$SINUS_DIR" && \
+    wget -qO- "https://www.sinusbot.com/dl/sinusbot-beta.tar.bz2" | \
     tar -xjf- -C "$SINUS_DIR" && \
     mv "$SINUS_DATA_SCRIPTS" "$SINUS_DATA_SCRIPTS-orig" && \
     cp -f "$SINUS_DIR/config.ini.dist" "$SINUS_DIR/config.ini" && \
-    sed -i 's|^DataDir.*|DataDir = '"$SINUS_DATA"'|g' "$SINUS_DIR/config.ini"
-
-RUN mkdir -p "$TS3_DIR" && \
+    sed -i 's|^DataDir.*|DataDir = '"$SINUS_DATA"'|g' "$SINUS_DIR/config.ini" && \
+    mkdir -p "$TS3_DIR" && \
     cd "$SINUS_DIR" || exit 1 && \
     wget -q -O "TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run" \
         "$TS3_DL_ADDRESS/$TS3_VERSION/TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run" && \
@@ -40,13 +38,11 @@ RUN mkdir -p "$TS3_DIR" && \
     yes | "./TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run" && \
     rm -f "TeamSpeak3-Client-linux_amd64-$TS3_VERSION.run" && \
     cp -f "$SINUS_DIR/plugin/libsoundbot_plugin.so" "$TS3_DIR/plugins/" && \
-    sed -i "s|^TS3Path.*|TS3Path = \"$TS3_DIR/ts3client_linux_amd64\"|g" "$SINUS_DIR/config.ini"
-
-RUN wget -q -O "$YTDL_BIN" "https://yt-dl.org/downloads/$YTDL_VERSION/youtube-dl" && \
+    sed -i "s|^TS3Path.*|TS3Path = \"$TS3_DIR/ts3client_linux_amd64\"|g" "$SINUS_DIR/config.ini" && \
+    wget -q -O "$YTDL_BIN" "https://yt-dl.org/downloads/$YTDL_VERSION/youtube-dl" && \
     chmod 755 -f "$YTDL_BIN" && \
-    echo "YoutubeDLPath = \"$YTDL_BIN\"" >> "$SINUS_DIR/config.ini"
-
-RUN chown -fR sinusbot:sinusbot "$SINUS_DIR" && \
+    echo "YoutubeDLPath = \"$YTDL_BIN\"" >> "$SINUS_DIR/config.ini" && \
+    chown -fR sinusbot:sinusbot "$SINUS_DIR" && \
     apt-get -q clean all && \
     rm -rf /tmp/* /var/tmp/*
 
