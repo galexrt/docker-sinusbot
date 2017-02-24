@@ -5,8 +5,10 @@ if [ "$DEBUG" == "True" ] || [ "$DEBUG" == "true" ]; then
     sed -i 's/LogLevel.*/LogLevel = 10/g' "$SINUS_DIR/config.ini"
 fi
 
+echo "-> Setting Sinusbot log file location ..."
 LOGPATH="${LOGPATH:-/sinusbot/data/sinus.log}"
 sed -i 's#^LogFile.*#LogFile = '"$LOGPATH"'#g' "$SINUS_DIR/config.ini"
+echo "=> Sinusbot logging to \"$LOGPATH\""
 
 echo "-> Updating sinusbot user and group id if necessary ..."
 if [ "$SINUS_USER" != "3000" ]; then
