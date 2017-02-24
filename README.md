@@ -71,3 +71,7 @@ docker run \
     -p 8087:8087 \
     galexrt/sinusbot:latest
 ```
+### Extra info
+* Shell access while the container is running: `docker exec -it sinusbot /bin/bash`
+* To monitor the logs in realtime or if you need to grab your sinusbot password: `docker logs -f sinusbot`
+* Upgrade Youtube-dl to the latest version: `docker restart sinusbot` or via shell access `youtube-dl -U`
