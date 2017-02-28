@@ -7,7 +7,7 @@ fi
 
 echo "-> Setting Sinusbot log file location to \"$LOGPATH\" ..."
 LOGPATH="${LOGPATH:-/sinusbot/data/sinus.log}"
-sed -i 's#^LogFile.*#LogFile = '"$LOGPATH"'#g' "$SINUS_DIR/config.ini"
+sed -i 's#^LogFile.*#LogFile = "'"$LOGPATH"'"#g' "$SINUS_DIR/config.ini"
 echo "=> Sinusbot logging to \"$LOGPATH\"."
 
 echo "-> Updating sinusbot user and group id if necessary ..."
