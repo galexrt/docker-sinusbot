@@ -8,7 +8,8 @@ ENV SINUS_USER="3000" \
     YTDL_BIN="/usr/local/bin/youtube-dl" \
     YTDL_VERSION="latest" \
     TS3_VERSION="3.0.19.4" \
-    TS3_DL_ADDRESS="http://teamspeak.gameserver.gamed.de/ts3/releases/"
+    TS3_DL_ADDRESS="http://teamspeak.gameserver.gamed.de/ts3/releases/" \
+    SINUSBOT_DL_URL="https://www.sinusbot.com/pre/sinusbot-0.9.16-10f0fad.tar.bz2"
 
 ENV SINUS_DATA="$SINUS_DIR/data" \
     SINUS_DATA_SCRIPTS="$SINUS_DIR/scripts" \
@@ -25,7 +26,7 @@ RUN groupadd -g "$SINUS_GROUP" sinusbot && \
     echo "LANG=en_US.UTF-8" >> /etc/default/locale && \
     locale-gen --purge en_US.UTF-8 && \
     mkdir -p "$SINUS_DIR" && \
-    wget -qO- "https://www.sinusbot.com/dl/sinusbot-beta.tar.bz2" | \
+    wget -qO- "$SINUSBOT_DL_URL" | \
     tar -xjf- -C "$SINUS_DIR" && \
     mv "$SINUS_DATA_SCRIPTS" "$SINUS_DATA_SCRIPTS-orig" && \
     cp -f "$SINUS_DIR/config.ini.dist" "$SINUS_DIR/config.ini" && \
