@@ -5,11 +5,12 @@ if [ "$DEBUG" == "True" ] || [ "$DEBUG" == "true" ]; then
     sed -i 's/LogLevel.*/LogLevel = 10/g' "$SINUS_DIR/config.ini"
 fi
 
-LOGPATH="${LOGPATH:-/sinusbot/data/sinus.log}"
-echo "-> Setting Sinusbot log file location to \"$LOGPATH\" ..."
-grep -q '^LogFile' "$SINUS_DIR/config.ini" && sed -i 's#^LogFile.*#LogFile = "'"$LOGPATH"'"#g' "$SINUS_DIR/config.ini" \
-    || echo "LogFile = \"$LOGPATH\"" >> "$SINUS_DIR/config.ini"
-echo "=> Sinusbot logging to \"$LOGPATH\"."
+if [ ! -z "$LOGPATH" ]; then
+    echo "-> Setting Sinusbot log file location to \"$LOGPATH\" ..."
+    grep -q '^LogFile' "$SINUS_DIR/config.ini" && sed -i 's#^LogFile.*#LogFile = "'"$LOGPATH"'"#g' "$SINUS_DIR/config.ini" \
+        || echo "LogFile = \"$LOGPATH\"" >> "$SINUS_DIR/config.ini"
+    echo "=> Sinusbot logging to \"$LOGPATH\"."
+fi
 
 echo "-> Updating sinusbot user and group id if necessary ..."
 if [ "$SINUS_USER" != "3000" ]; then
