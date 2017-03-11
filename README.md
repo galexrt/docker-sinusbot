@@ -72,6 +72,19 @@ docker run \
     galexrt/sinusbot:latest
 ```
 
+### Getting Sinusbot image
+#### Normal
+Replace `CONTAINER_NAME` with the container name or ID of the Sinusbot container and check the output for the password of Sinusbot (The password will only be shown on the first run of Sinusbot).
+```
+docker logs CONTAINER_NAME
+```
+
+#### With `LOGPATH` set
+Replace `CONTAINER_NAME` with the container name or ID and `LOGPATH` with set value, in the following command:
+```
+docker exec CONTAINER_NAME cat LOGPATH
+```
+
 ### Extra info
 * Shell access while the container is running: `docker exec -it sinusbot /bin/bash`
 * To monitor the logs in realtime or if you need to grab your sinusbot password: `docker logs -f sinusbot`
