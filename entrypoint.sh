@@ -14,10 +14,10 @@ fi
 
 echo "-> Updating sinusbot user and group id if necessary ..."
 if [ "$SINUS_USER" != "3000" ]; then
-    usermod -u "#$SINUS_USER" sinusbot
+    usermod -u "$SINUS_USER" sinusbot
 fi
 if [ "$SINUS_GROUP" != "3000" ]; then
-    groupmod -g "#$SINUS_GROUP" sinusbot
+    groupmod -g "$SINUS_GROUP" sinusbot
 fi
 
 echo "-> Correcting file and mount point permissions ..."
