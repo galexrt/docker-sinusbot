@@ -1,4 +1,4 @@
-FROM ubuntu:yakkety
+FROM ubuntu:xenial
 
 MAINTAINER Alexander Trost <galexrt@googlemail.com>
 
