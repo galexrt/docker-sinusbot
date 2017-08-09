@@ -21,15 +21,13 @@ RUN groupadd -g "$SINUS_GROUP" sinusbot && \
     useradd -u "$SINUS_USER" -g "$SINUS_GROUP" -d "$SINUS_DIR" sinusbot && \
     apt-get -q update -y && \
     apt-get -q upgrade -y && \
-    apt-get -q install -y locales && \
-    locale-gen "$LANG" && \
+    apt-get -q install -y x11vnc xvfb libxcursor1 ca-certificates bzip2 \
+        libglib2.0-0 libnss3 locales wget sudo python less && \
+    locale-gen --purge "$LANG" && \
     update-locale LANG="$LANG" && \
     echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale && \
     echo "LANG=en_US.UTF-8" >> /etc/default/locale && \
-    apt-get -q install -y x11vnc xvfb libxcursor1 ca-certificates bzip2 \
-        libglib2.0-0 libnss3 locales wget sudo python less && \
     update-ca-certificates && \
-    locale-gen --purge en_US.UTF-8 && \
     mkdir -p "$SINUS_DIR" && \
     wget -qO- "$SINUSBOT_DL_URL" | \
     tar -xjf- -C "$SINUS_DIR" && \
