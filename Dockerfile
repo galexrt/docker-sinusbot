@@ -3,7 +3,7 @@ FROM ubuntu:yakkety
 MAINTAINER Alexander Trost <galexrt@googlemail.com>
 
 ENV LANG="en_US.UTF-8" \
-    LC_ALL="en_US.UTF-8 "
+    LC_ALL="en_US.UTF-8 " \
     SINUS_USER="3000" \
     SINUS_GROUP="3000" \
     SINUS_DIR="/sinusbot" \
