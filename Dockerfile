@@ -2,7 +2,9 @@ FROM ubuntu:yakkety
 
 MAINTAINER Alexander Trost <galexrt@googlemail.com>
 
-ENV SINUS_USER="3000" \
+ENV LANG="en_US.UTF-8" \
+    LC_ALL="en_US.UTF-8 "
+    SINUS_USER="3000" \
     SINUS_GROUP="3000" \
     SINUS_DIR="/sinusbot" \
     YTDL_BIN="/usr/local/bin/youtube-dl" \
@@ -19,6 +21,8 @@ RUN groupadd -g "$SINUS_GROUP" sinusbot && \
     useradd -u "$SINUS_USER" -g "$SINUS_GROUP" -d "$SINUS_DIR" sinusbot && \
     apt-get -q update -y && \
     apt-get -q upgrade -y && \
+    sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/' /etc/locale.gen && \
+    locale-gen && \
     apt-get -q install -y x11vnc xvfb libxcursor1 ca-certificates bzip2 \
         libglib2.0-0 libnss3 locales wget sudo python less && \
     update-ca-certificates && \
