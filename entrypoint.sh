@@ -47,4 +47,4 @@ $YTDL_BIN -U
 echo "=> Updated youtube-dl with exit code $?"
 
 echo "=> Starting SinusBot (https://sinusbot.com) by Michael Friese ..."
-exec sudo -u sinusbot -g sinusbot "$SINUS_DIR/sinusbot"
+exec sudo -u sinusbot -g sinusbot "$SINUS_DIR/sinusbot" "$@"
