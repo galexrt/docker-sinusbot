@@ -46,5 +46,13 @@ echo "=> Updating Youtube-dl..."
 $YTDL_BIN -U
 echo "=> Updated youtube-dl with exit code $?"
 
+echo "=> Updating Sinusbot"
+cd /sinusbot
+wget https://www.sinusbot.com/dl/sinusbot.current.tar.bz2
+tar -xjvf sinusbot.current.tar.bz2
+cp plugin/libsoundbot_plugin.so TeamSpeak3-Client-linux_amd64/plugins/
+chown -R sinusbot /sinusbot
+echo "=> Done"
+
 echo "=> Starting SinusBot (https://sinusbot.com) by Michael Friese ..."
 exec sudo -u sinusbot -g sinusbot "$SINUS_DIR/sinusbot" "$@"
