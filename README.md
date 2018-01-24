@@ -13,12 +13,12 @@ TeamSpeak 3 SinusBot Homepage: https://sinusbot.com/.
 
 Current version:
 ```
-Sinusbot: latest beta (>=0.9.16-10f0fad)
-TeamSpeak: 3.0.18.2 (this version is required for Sinusbot)
+Sinusbot: latest beta (>=0.11.0)
+TeamSpeak: 3.1.8 (this version is required for Sinusbot)
 ```
 
 ## Summary
-* Debian Jessie with the latest version of Sinusbot
+* Ubuntu Xenial with the latest version of Sinusbot
 * You can inject your data into the container
   * /data
 
