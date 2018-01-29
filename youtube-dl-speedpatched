@@ -1,0 +1,3 @@
+#!/bin/bash
+
+"$YTDL_BIN" ${@/bestaudio/43}

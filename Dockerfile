@@ -47,12 +47,14 @@ RUN groupadd -g "$SINUS_GROUP" sinusbot && \
     sed -i "s|^TS3Path.*|TS3Path = \"$TS3_DIR/ts3client_linux_amd64\"|g" "$SINUS_DIR/config.ini" && \
     wget -q -O "$YTDL_BIN" "https://yt-dl.org/downloads/$YTDL_VERSION/youtube-dl" && \
     chmod 755 -f "$YTDL_BIN" && \
-    echo "YoutubeDLPath = \"$YTDL_BIN\"" >> "$SINUS_DIR/config.ini" && \
+    "$YTDL_BIN" -U && \
+    echo "YoutubeDLPath = \"$YTDL_BIN-speedpatched\"" >> "$SINUS_DIR/config.ini" && \
     chown -fR sinusbot:sinusbot "$SINUS_DIR" && \
     apt-get -q clean all && \
     rm -rf /tmp/* /var/tmp/*
 
 COPY entrypoint.sh /entrypoint.sh
+COPY youtube-dl-speedpatched /usr/local/bin/youtube-dl-speedpatched
 
 VOLUME ["$SINUS_DATA", "$SINUS_DATA_SCRIPTS"]
 
