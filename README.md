@@ -27,8 +27,9 @@ To run the Sinusbot container with data persistence see: [Mount host directory](
 To run the Sinusbot container without data persistence, see [Mount host directory](#mount-host-directory) but remove the `-v ...` flags.
 
 When you have started the Sinusbot for the first time, you need to get the password from the logs, see [Get Sinusbot Password](#get-sinusbot-password).
+There is "no way" to show the password a second time.
 
-If you run into issues, please create an issue at [New issue](/issues/new) this GitHub project with as much details of your issue as possible. Thanks!
+If you run into issues, please create an issue in this GitHub project with as much details of your issue as possible. Thanks!
 
 ### Mount host directory
 This allows you to update the container image with new Sinusbot versions, without losing your data.
