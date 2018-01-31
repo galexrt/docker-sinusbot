@@ -23,11 +23,13 @@ For more info about the image, see [Image contents](#image-contents).
 By using this image you accept TeamSpeak's and Sinusbot's license agreements.
 
 **IMPORTANT** You need data persistence to be able to update the Sinusbot container image without losing your data!
-To run the Sinusbot container with data persistence see: [Mount host directory](#mount-host-directory).
-To run the Sinusbot container without data persistence, see [Mount host directory](#mount-host-directory) but remove the `-v ...` flags.
+
+* To run the Sinusbot container with data persistence see: [Mount host directory](#mount-host-directory).
+* To run the Sinusbot container without data persistence, see [Mount host directory](#mount-host-directory) but remove the `-v ...` flags.
 
 When you have started the Sinusbot for the first time, you need to get the password from the logs, see [Get Sinusbot Password](#get-sinusbot-password).
-There is "no way" to show the password a second time.
+
+**WARNING** There is "no way" to show the password a second time!
 
 If you run into issues, please create an issue in this GitHub project with as much details of your issue as possible. Thanks!
 
@@ -125,11 +127,11 @@ Also note that most flags that were previously available have been removed.
 Replace `CONTAINER_NAME` with the container name (`--name` flag in `docker run` command) or ID of the Sinusbot container.
 * Shell access while the container is running: `docker exec -it CONTAINER_NAME /bin/bash`.
 * To follow the Sinusbot logs or if you need to grab your Sinusbot password on the first run, use: `docker logs -f CONTAINER_NAME`.
-* Upgrade Youtube-dl to the latest version via shell access `youtube-dl -U`. You should normally just update the container image and restart it, see [Usage - Updating the image](#updating-the-image)).
+* Upgrade Youtube-dl to the latest version via shell access (see first point in this list) `youtube-dl -U`. You should normally just update the container image and restart it, see [Usage - Updating the image](#updating-the-image)).
 
 ## Image contents
 * Ubuntu Xenial with the latest version of Sinusbot
-* You can inject your data into the container
+* Volumes for Sinusbot data and scripts:
   * `/sinusbot/data`
   * `/sinusbot/scripts`
 * Sinusbot Port `8087`
