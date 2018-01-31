@@ -56,6 +56,8 @@ RUN groupadd -g "$SINUS_GROUP" sinusbot && \
 COPY entrypoint.sh /entrypoint.sh
 COPY youtube-dl-speedpatched /usr/local/bin/youtube-dl-speedpatched
 
+USER sinusbot
+
 VOLUME ["$SINUS_DATA", "$SINUS_DATA_SCRIPTS"]
 
 EXPOSE 8087
