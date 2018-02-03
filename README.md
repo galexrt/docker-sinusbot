@@ -43,6 +43,9 @@ sudo chown 3000:3000 -R /opt/docker/sinusbot/data /opt/docker/sinusbot/scripts
 ```
 (`sudo` can be removed if you are not using it or are logged in as `root`)
 
+**IMPORTANT** When using Docker for Mac the files need to be owned by the user running the container. More information: https://docs.docker.com/docker-for-mac/osxfs/#ownership
+
+
 To then start the Sinusbot container run:
 ```
 docker run \
