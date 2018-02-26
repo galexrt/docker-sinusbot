@@ -1,6 +1,6 @@
 FROM ubuntu:xenial
 
-MAINTAINER Alexander Trost <galexrt@googlemail.com>
+LABEL maintainer="Alexander Trost <galexrt@googlemail.com>"
 
 ENV LANG="en_US.UTF-8" \
     LC_ALL="en_US.UTF-8 " \
