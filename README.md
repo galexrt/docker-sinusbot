@@ -38,8 +38,8 @@ This allows you to update the container image with new Sinusbot versions, withou
 
 You need to run the following two commands before starting/running the container:
 ```
-sudo mkdir -p /opt/docker/sinusbot/data /opt/docker/sinusbot/scripts
-sudo chown 3000:3000 -R /opt/docker/sinusbot/data /opt/docker/sinusbot/scripts
+sudo mkdir -p /opt/docker/sinusbot/data /opt/docker/sinusbot/scripts /opt/docker/sinusbot/config
+sudo chown 3000:3000 -R /opt/docker/sinusbot/data /opt/docker/sinusbot/scripts /opt/docker/sinusbot/config
 ```
 (`sudo` can be removed if you are not using it or are logged in as `root`)
 
@@ -53,6 +53,7 @@ docker run \
     -d \
     -v /opt/docker/sinusbot/data:/sinusbot/data \
     -v /opt/docker/sinusbot/scripts:/sinusbot/scripts \
+    -v /opt/docker/sinusbot/config:/sinusbot/config \
     -p 8087:8087 \
     quay.io/galexrt/sinusbot:latest
 ```
@@ -72,6 +73,11 @@ PLEASE MAKE SURE TO CHANGE THE PASSWORD DIRECTLY AFTER YOUR FIRST LOGIN!!!
 -------------------------------------------------------------------------------
 [...]
 ```
+
+### Editing the config file
+The config file is available in the container path `/sinusbot/config`.
+The example above mounts the `/sinusbot/config` directory to `/opt/docker/sinusbot/config`.
+After editing the `config.ini`, you need to restart the container for Sinusbot to pickup the changes.
 
 ### Updating the image
 Run the below command, to update the container image to the latest version:
@@ -102,6 +108,7 @@ docker run \
 [...]
     -v /opt/docker/sinusbot/data:/sinusbot/data:z \
     -v /opt/docker/sinusbot/scripts:/sinusbot/scripts:z \
+    -v /opt/docker/sinusbot/config:/sinusbot/config:z \
 [...]
 ```
 This assumes that your data paths are located at the paths after the `-v` flag up to the `:`.
@@ -120,7 +127,7 @@ SINUS_GROUP=3000
 ### Migrating from the "old" Container image
 If your data is owned by `root` (UID `0`), you need to run:
 ```
-chown 3000:3000 -R /opt/docker/sinusbot/data /opt/docker/sinusbot/scripts
+chown 3000:3000 -R /opt/docker/sinusbot/data /opt/docker/sinusbot/scripts /opt/docker/sinusbot/config
 ```
 This assumes that your data paths are currently located at the two paths behind the `-R` flag.
 Don't forget to check if your `docker run` command is still uptodate with now two volumes, first (`.../data`) for data and the second (`.../scripts`) for Sinusbot scripts.
@@ -134,9 +141,10 @@ Replace `CONTAINER_NAME` with the container name (`--name` flag in `docker run` 
 
 ## Image contents
 * Ubuntu Xenial with the latest version of Sinusbot
-* Volumes for Sinusbot data and scripts:
+* Volumes for Sinusbot data, scripts and config:
   * `/sinusbot/data`
   * `/sinusbot/scripts`
+  * `/sinusbot/config`
 * Sinusbot Port `8087`
 * Youtube-DL
 * TeamSpeak Client

@@ -15,6 +15,7 @@ ENV LANG="en_US.UTF-8" \
 
 ENV SINUS_DATA="$SINUS_DIR/data" \
     SINUS_DATA_SCRIPTS="$SINUS_DIR/scripts" \
+    SINUS_CONFIG="$SINUS_DIR/config" \
     TS3_DIR="$SINUS_DIR/TeamSpeak3-Client-linux_amd64"
 
 RUN groupadd -g "$SINUS_GROUP" sinusbot && \
@@ -58,7 +59,7 @@ COPY youtube-dl-speedpatched /usr/local/bin/youtube-dl-speedpatched
 
 USER sinusbot
 
-VOLUME ["$SINUS_DATA", "$SINUS_DATA_SCRIPTS"]
+VOLUME ["$SINUS_DATA", "$SINUS_DATA_SCRIPTS", "$SINUS_CONFIG"]
 
 EXPOSE 8087
 
