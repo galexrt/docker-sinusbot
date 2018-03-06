@@ -17,11 +17,11 @@ fi
 
 if [ -d "$SINUS_CONFIG" ] && [ -f "$SINUS_CONFIG/config.ini" ]; then
     echo "-> Found config in $SINUS_CONFIG directory, linking ..."
-    rm "$SINUS_DIR/config.ini"
 else
     echo "-> No $SINUS_CONFIG/config.ini found, copying current config and linking."
     cp "$SINUS_DIR/config.ini" "$SINUS_CONFIG/config.ini"
 fi
+rm "$SINUS_DIR/config.ini"
 ln -s "$SINUS_CONFIG/config.ini" "$SINUS_DIR/config.ini"
 echo "=> Linked $SINUS_CONFIG/config.ini to $SINUS_DIR/config.ini."
 
