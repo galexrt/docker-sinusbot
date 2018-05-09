@@ -29,7 +29,7 @@ By using this image you accept TeamSpeak's and Sinusbot's license agreements.
 
 When you have started the Sinusbot for the first time, you need to get the password from the logs, see [Get Sinusbot Password](#get-sinusbot-password).
 
-**WARNING** There is "no way" to show the password a second time! You can use ```./sinusbot --override-password=newpassword``` to reset the password.
+**WARNING** There is "no way" to show the password a second time! You can use `./sinusbot --override-password=newpassword` to reset the password.
 
 If you run into issues, please create an issue in this GitHub project with as much details of your issue as possible. Thanks!
 
