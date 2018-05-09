@@ -11,8 +11,7 @@ ENV LANG="en_US.UTF-8" \
     YTDL_VERSION="latest" \
     TS3_VERSION="3.1.8" \
     TS3_DL_ADDRESS="http://dl.4players.de/ts/releases/" \
-    SINUSBOT_DL_URL="https://www.sinusbot.com/pre/sinusbot-0.13.37-f7e9ece.tar.bz2"
-    # Current "stable" Sinusbot download: https://www.sinusbot.com/dl/sinusbot.current.tar.bz2
+    SINUSBOT_DL_URL="https://www.sinusbot.com/dl/sinusbot.current.tar.bz2" # Current "stable" version of Sinusbot
 
 ENV SINUS_DATA="$SINUS_DIR/data" \
     SINUS_DATA_SCRIPTS="$SINUS_DIR/scripts" \
