@@ -15,14 +15,14 @@ else
     echo "=> Scripts directory is marked, scripts were already copied. Nothing to do."
 fi
 
-if [ ! -f "$SINUS_CONFIG/config.ini" ]; then
-    echo "-> No $SINUS_CONFIG/config.ini found, copying."
-    mv "$SINUS_DIR/config.ini" "$SINUS_CONFIG/config.ini"
+if [ -d "$SINUS_CONFIG" ] && [ -f "$SINUS_CONFIG/config.ini" ]; then
+    echo "-> Found config in $SINUS_CONFIG directory, linking ..."
+    rm "$SINUS_DIR/config.ini"
+    ln -s "$SINUS_CONFIG/config.ini" "$SINUS_DIR/config.ini"
+    echo "=> Linked $SINUS_CONFIG/config.ini to $SINUS_DIR/config.ini."
+else
+    echo "-> No $SINUS_CONFIG/config.ini found, not linking."
 fi
-echo "-> Linking $SINUS_CONFIG/config.ini to $SINUS_DIR/config.ini ..."
-rm -f "$SINUS_DIR/config.ini"
-ln -s "$SINUS_CONFIG/config.ini" "$SINUS_DIR/config.ini"
-echo "=> Linked $SINUS_CONFIG/config.ini to $SINUS_DIR/config.ini."
 
 echo "=> Starting SinusBot (https://sinusbot.com) by Michael Friese ..."
 exec "$SINUS_DIR/sinusbot" "$@"
