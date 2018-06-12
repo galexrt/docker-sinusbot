@@ -16,9 +16,9 @@ else
 fi
 
 if [ -d "$SINUS_CONFIG" ] && [ -f "$SINUS_CONFIG/config.ini" ]; then
-    echo "-> Found config in $SINUS_CONFIG directory, linking ..."
-    rm "$SINUS_DIR/config.ini"
-    ln -s "$SINUS_CONFIG/config.ini" "$SINUS_DIR/config.ini"
+    echo "-> Found config in $SINUS_CONFIG with config.ini directory, linking ..."
+    rm -f "$SINUS_DIR/config.ini"
+    ln -sf "$SINUS_CONFIG/config.ini" "$SINUS_DIR/config.ini"
     echo "=> Linked $SINUS_CONFIG/config.ini to $SINUS_DIR/config.ini."
 else
     echo "-> No $SINUS_CONFIG/config.ini found, not linking."
