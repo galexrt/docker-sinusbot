@@ -34,7 +34,7 @@ RUN groupadd -g "$SINUS_GROUP" sinusbot && \
     wget -qO- "$SINUSBOT_DL_URL" | \
     tar -xjf- -C "$SINUS_DIR" && \
     mv "$SINUS_DATA_SCRIPTS" "$SINUS_DATA_SCRIPTS-orig" && \
-    mkdir -p "$SINUS_CONFIG" && \
+    mkdir -p "$SINUS_CONFIG" "$SINUS_DATA_SCRIPTS" && \
     cp -f "$SINUS_DIR/config.ini.dist" "$SINUS_DIR/config.ini" && \
     sed -i 's|^DataDir.*|DataDir = '"$SINUS_DATA"'|g' "$SINUS_DIR/config.ini" && \
     mkdir -p "$TS3_DIR" && \
@@ -60,6 +60,7 @@ COPY entrypoint.sh /entrypoint.sh
 COPY youtube-dl-speedpatched /usr/local/bin/youtube-dl-speedpatched
 
 USER sinusbot
+WORKDIR "$SINUS_DIR"
 
 VOLUME ["$SINUS_DATA", "$SINUS_DATA_SCRIPTS", "$SINUS_CONFIG"]
 
