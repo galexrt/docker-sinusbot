@@ -13,7 +13,7 @@ TeamSpeak 3 SinusBot Homepage: https://sinusbot.com/.
 
 Current version:
 ```
-Sinusbot: latest beta (>=0.13.37)
+Sinusbot: latest beta (>=0.14.3-0e747fd)
 TeamSpeak: 3.2.1 (this version is required for Sinusbot)
 ```
 For more info about the image, see [Image contents](#image-contents).

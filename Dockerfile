@@ -12,7 +12,7 @@ ENV LANG="en_US.UTF-8" \
     TS3_VERSION="3.2.1" \
     TS3_DL_ADDRESS="http://dl.4players.de/ts/releases/" \
     SINUSBOT_DL_URL="https://www.sinusbot.com/dl/sinusbot.current.tar.bz2"
-    # Current "stable" version of Sinusbot
+    # That currently points to the latest beta version of Sinusbot
 
 ENV SINUS_DATA="$SINUS_DIR/data" \
     SINUS_DATA_SCRIPTS="$SINUS_DIR/scripts" \
