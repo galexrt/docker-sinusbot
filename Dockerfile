@@ -21,10 +21,11 @@ ENV SINUS_DATA="$SINUS_DIR/data" \
 
 RUN groupadd -g "$SINUS_GROUP" sinusbot && \
     useradd -u "$SINUS_USER" -g "$SINUS_GROUP" -d "$SINUS_DIR" sinusbot && \
+    dpkg --add-architecture i386 && \
     apt-get -q update -y && \
     apt-get -q upgrade -y && \
     apt-get -q install -y x11vnc xvfb libxcursor1 ca-certificates bzip2 libnss3 libegl1-mesa x11-xkb-utils libasound2 libpci3 libxslt1.1 libxkbcommon0 libxss1 curl \
-        libglib2.0-0 locales wget sudo python less && \
+        libglib2.0-0 locales wget sudo python less libpulse0:i386 && \
     locale-gen --purge "$LANG" && \
     update-locale LANG="$LANG" && \
     echo "LC_ALL=en_US.UTF-8" >> /etc/default/locale && \
