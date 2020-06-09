@@ -1,3 +1,9 @@
+**DEPRECATED + ARCHIVED** in favor of [GitHub SinusBot/docker](https://github.com/SinusBot/docker) repository.
+
+Please use the official Docker image instead of this image.
+
+***
+
 # docker-sinusbot
 
 [![](https://images.microbadger.com/badges/image/galexrt/sinusbot.svg)](https://microbadger.com/images/galexrt/sinusbot "Get your own image badge on microbadger.com")
