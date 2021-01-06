@@ -1,4 +1,4 @@
-FROM ubuntu:disco
+FROM ubuntu:focal
 
 LABEL maintainer="Alexander Trost <galexrt@googlemail.com>"
 
